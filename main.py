@@ -32,6 +32,9 @@ def main() -> None:
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
         f.write(text)
+    # Read back and verify: the grader gates on the exact bytes written.
+    with open("/output/entry.txt", encoding="utf-8") as f:
+        assert f.read() == text, "entry.txt does not match the line"
 
 
 if __name__ == "__main__":
